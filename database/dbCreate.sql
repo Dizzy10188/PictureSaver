@@ -4,5 +4,13 @@ use picturedb;
 
 CREATE TABLE IF NOT EXISTS images(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
     name LONGBLOB NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS users(
+    user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(30) NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    email VARCHAR(30) NOT NULL
 );
