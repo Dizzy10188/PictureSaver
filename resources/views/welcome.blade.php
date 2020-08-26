@@ -21,16 +21,20 @@ if (isset($_POST["insert"])) {
     if (mysqli_query($ConnDB, $query)) {
         echo '<script>alert("Image Inserted into Database")</script>';
     }
-}
-
-if (isset($_POST["uname"]) && isset($_POST["psw"]) && isset($_POST["email"])) {
+} else if (isset($_POST["uname"]) && isset($_POST["psw"]) && isset($_POST["email"])) {
     $query = "INSERT INTO users(username, password, email) VALUES ('$_POST[uname]', '$_POST[psw]', '$_POST[email]')";
 
     if (mysqli_query($ConnDB, $query)) {
         echo '<script>alert("Account created")</script>';
     }
-}
+} else if (isset($_POST["uname"]) && isset($_POST["psw"])) {
+    // $query = "INSERT INTO users(username, password, email) VALUES ('$_POST[uname]', '$_POST[psw]')";
+    echo '<script>alert("Logged in")</script>';
 
+    // if (mysqli_query($ConnDB, $query)) {
+    //     echo '<script>alert("Account created")</script>';
+    // }
+}
 
 ?>
 

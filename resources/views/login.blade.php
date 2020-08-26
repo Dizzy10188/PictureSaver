@@ -19,7 +19,21 @@
 </header>
 
 <body>
-    <h1>Login</h1>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="/" method="post">
+            @csrf
+            <div class="form-group">
+                <label for="uname">Username:</label>
+                <input type="text" class="form-control" id="uname" name="uname" required>
+            </div>
+            <div class="form-group">
+                <label for="psw">Password:</label>
+                <input type="password" class="form-control" id="psw" name="psw" required>
+            </div>
+            <button type="submit" id="login" name="login" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 </body>
 
 </html>
