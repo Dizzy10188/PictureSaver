@@ -42,10 +42,11 @@ class Controller extends BaseController
         // print_r($userID);
         $output['userID'] = $userID;
 
-        print_r($output);
+        // print_r($output);
         // print_r($output['userID']);
         // print_r($output['uname']);
         // print_r($output['psw']);
-        return view('welcome');
+        $request->session()->put('userID', $output['userID']);
+        return view('welcome')->with('data', $request->session()->get('userID'));
     }
 }

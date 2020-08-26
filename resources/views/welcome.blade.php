@@ -78,6 +78,7 @@ if (isset($_POST["insert"])) {
 </header>
 
 <body>
+    <h2>UserID: {{$data ?? ''}}</h2>
     <br /><br />
     <div class="container" style="width: 80%;">
         <br />
