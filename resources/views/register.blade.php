@@ -11,6 +11,18 @@
     <title>Picture Saver</title>
 </head>
 
+<?php
+include_once "../database/DBConnector.php";
+$ConnDB = ConnGet();
+if (isset($_POST["uname"]) && isset($_POST["psw"]) && isset($_POST["email"])) {
+    $query = "INSERT INTO users(username, password, email) VALUES ('$_POST[uname]', '$_POST[psw]', '$_POST[email]')";
+
+    if (mysqli_query($ConnDB, $query)) {
+        echo '<script>alert("Account created")</script>';
+    }
+}
+?>
+
 <!-- header #1 -->
 <header class="header" id="header1">
     <div class="jumbotron text-center bg-secondary">
@@ -21,7 +33,7 @@
 <body>
     <div class="container">
         <h2>Register</h2>
-        <form action="/" method="post">
+        <form action="/register" method="post">
             @csrf
             <div class="form-group">
                 <label for="uname">Username:</label>

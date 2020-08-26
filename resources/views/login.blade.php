@@ -11,6 +11,31 @@
     <title>Picture Saver</title>
 </head>
 
+<?php
+include_once "../database/DBConnector.php";
+$ConnDB = ConnGet();
+if (isset($_POST["uname"]) && isset($_POST["psw"])) {
+    $name = $_POST["uname"];
+    $pass = $_POST["psw"];
+    $query = "SELECT user_id, username, password FROM users WHERE username='$name' AND password='$pass'";
+
+    $result = mysqli_query(ConnGet(), $query);
+
+    if (!$result) {
+        $message  = 'Invalid query:' . mysqli_connect_error();
+        $message .= ' Whole query: ' . $query;
+        $message .= ' username: ' . $name;
+        $message .= ' password: ' . $pass;
+        die($message);
+    }
+
+    while ($row = $result->fetch_assoc()) {
+        echo '<script>alert("Logged in")</script>';
+        $_POST["userID"] = $row['user_id'];
+    }
+}
+?>
+
 <!-- header #1 -->
 <header class="header" id="header1">
     <div class="jumbotron text-center bg-secondary">
@@ -21,7 +46,7 @@
 <body>
     <div class="container">
         <h2>Login</h2>
-        <form action="/" method="post">
+        <form action="/login" method="post">
             @csrf
             <div class="form-group">
                 <label for="uname">Username:</label>

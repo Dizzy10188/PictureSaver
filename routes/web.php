@@ -20,6 +20,11 @@ use Illuminate\Support\Facades\Route;
 // Controller: in App/http/controllers
 Route::get('control/{value}', 'myController@page');
 
+//Setting the controller for login to the route
+Route::post('/login', "Controller@login");
+
+//Setting the controller for register to the route
+Route::post('/register', "Controller@register");
 
 // -----------------------------------
 // Default route: Look for view-page welcome.blade.php in path "/resources/views"
@@ -31,12 +36,6 @@ Route::get('/', function () {
 Route::post('/', function () {
     return view('welcome');
 });
-
-//Setting the controller for login to the route
-Route::post('/', "Controller@login");
-
-//Setting the controller for login to the route
-Route::post('/', "Controller@register");
 
 //Setting the route to GET to the upload page
 Route::get('/upload', function () {
@@ -50,5 +49,10 @@ Route::get('/login', function () {
 
 //Setting the route to GET to the register page
 Route::get('/register', function () {
+    return view('register');
+});
+
+//Setting the route to POST to the register page
+Route::post('/register', function () {
     return view('register');
 });

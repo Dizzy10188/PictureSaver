@@ -21,35 +21,6 @@ if (isset($_POST["insert"])) {
     if (mysqli_query($ConnDB, $query)) {
         echo '<script>alert("Image Inserted into Database")</script>';
     }
-} else if (isset($_POST["uname"]) && isset($_POST["psw"]) && isset($_POST["email"])) {
-    $query = "INSERT INTO users(username, password, email) VALUES ('$_POST[uname]', '$_POST[psw]', '$_POST[email]')";
-
-    if (mysqli_query($ConnDB, $query)) {
-        echo '<script>alert("Account created")</script>';
-    }
-} else if (isset($_POST["uname"]) && isset($_POST["psw"])) {
-    $name = $_POST["uname"];
-    $pass = $_POST["psw"];
-    $query = "SELECT user_id, username, password FROM users WHERE username='$name' AND password='$pass'";
-
-    $result = mysqli_query(ConnGet(), $query);
-
-    if (!$result) {
-        $message  = 'Invalid query:' . mysqli_connect_error();
-        $message .= ' Whole query: ' . $query;
-        $message .= ' username: ' . $name;
-        $message .= ' password: ' . $pass;
-        die($message);
-    }
-
-    while ($row = $result->fetch_assoc()) {
-        echo '<script>alert("Logged in")</script>';
-        $_POST["userID"] = $row['user_id']; 
-        // echo $row['user_id'];
-        // echo $row['username'];
-        // echo $row['password'];        
-    }
-
 }
 
 ?>
