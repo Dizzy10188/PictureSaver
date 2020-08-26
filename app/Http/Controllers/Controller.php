@@ -15,7 +15,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     //
-    function index(Request $request)
+    function login(Request $request)
     {
         
         $output = $request->session()->get('Data');
@@ -49,4 +49,13 @@ class Controller extends BaseController
         $request->session()->put('userID', $output['userID']);
         return view('welcome')->with('data', $request->session()->get('userID'));
     }
+
+
+    function register(Request $request)
+    {
+
+    }
+
+
+
 }
