@@ -22,6 +22,16 @@ if (isset($_POST["insert"])) {
         echo '<script>alert("Image Inserted into Database")</script>';
     }
 }
+
+if (isset($_POST["uname"]) && isset($_POST["psw"]) && isset($_POST["email"])) {
+    $query = "INSERT INTO users(username, password, email) VALUES ('$_POST[uname]', '$_POST[psw]', '$_POST[email]')";
+
+    if (mysqli_query($ConnDB, $query)) {
+        echo '<script>alert("Account created")</script>';
+    }
+}
+
+
 ?>
 
 <header class="header" id="header1">
@@ -32,16 +42,16 @@ if (isset($_POST["insert"])) {
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <h3 style="font-size: 40px;">Why</h3>
-                <p style="font-size: 20px;">The reason this site exists is because I wanted to figure out how to save images to mySQL and display them to a webpage</p>
+                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="register">Register</a></h3>
+                <p style="font-size: 20px;">Click the link above to go to to the register page</p>
             </div>
             <div class="col-sm-4">
-                <h3 style="font-size: 40px;">About</h3>
-                <p style="font-size: 20px;">This site saves any images that is uploaded and displays them in a gallary format as seen below</p>
+                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="login">Login</a></h3>
+                <p style="font-size: 20px;">Click the link above to go to the login page</p>
             </div>
             <div class="col-sm-4">
                 <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="upload">Upload</a></h3>
-                <p style="font-size: 20px;">Click the button above to go to another page to upload a image of your choosing</p>
+                <p style="font-size: 20px;">Click the link above to go to another page to upload a image of your choosing</p>
             </div>
         </div>
     </div>

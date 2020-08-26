@@ -36,3 +36,13 @@ Route::post('/', function () {
 Route::get('/upload', function () {
     return view('upload');
 });
+
+//Setting the route to GET to the login page
+Route::get('/login', function () {
+    return view('login');
+});
+
+//Setting the route to GET to the register page
+Route::get('/register', function () {
+    return view('register');
+});
