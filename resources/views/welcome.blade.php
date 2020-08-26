@@ -30,7 +30,7 @@ if (isset($_POST["insert"])) {
 } else if (isset($_POST["uname"]) && isset($_POST["psw"])) {
     $name = $_POST["uname"];
     $pass = $_POST["psw"];
-    $query = "SELECT username, password FROM users WHERE username='$name' AND password='$pass'";
+    $query = "SELECT user_id, username, password FROM users WHERE username='$name' AND password='$pass'";
 
     $result = mysqli_query(ConnGet(), $query);
 
@@ -44,6 +44,8 @@ if (isset($_POST["insert"])) {
 
     while ($row = $result->fetch_assoc()) {
         echo '<script>alert("Logged in")</script>';
+        $_POST["userID"] = $row['user_id']; 
+        // echo $row['user_id'];
         // echo $row['username'];
         // echo $row['password'];        
     }

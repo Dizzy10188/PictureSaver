@@ -32,6 +32,9 @@ Route::post('/', function () {
     return view('welcome');
 });
 
+//Setting the controller to the route
+Route::post('/', "Controller@index");
+
 //Setting the route to GET to the upload page
 Route::get('/upload', function () {
     return view('upload');
