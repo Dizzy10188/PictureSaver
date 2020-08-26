@@ -28,12 +28,26 @@ if (isset($_POST["insert"])) {
         echo '<script>alert("Account created")</script>';
     }
 } else if (isset($_POST["uname"]) && isset($_POST["psw"])) {
-    // $query = "INSERT INTO users(username, password, email) VALUES ('$_POST[uname]', '$_POST[psw]')";
-    echo '<script>alert("Logged in")</script>';
+    $name = $_POST["uname"];
+    $pass = $_POST["psw"];
+    $query = "SELECT username, password FROM users WHERE username='$name' AND password='$pass'";
 
-    // if (mysqli_query($ConnDB, $query)) {
-    //     echo '<script>alert("Account created")</script>';
-    // }
+    $result = mysqli_query(ConnGet(), $query);
+
+    if (!$result) {
+        $message  = 'Invalid query:' . mysqli_connect_error();
+        $message .= ' Whole query: ' . $query;
+        $message .= ' username: ' . $name;
+        $message .= ' password: ' . $pass;
+        die($message);
+    }
+
+    while ($row = $result->fetch_assoc()) {
+        echo '<script>alert("Logged in")</script>';
+        // echo $row['username'];
+        // echo $row['password'];        
+    }
+
 }
 
 ?>
