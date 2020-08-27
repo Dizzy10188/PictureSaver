@@ -63,18 +63,6 @@ Route::get('/login', function () {
     return view('login');
 });
 
-// Route::post('/login', 'Controller@login');
-
-// Route::post('/login', function () {
-//     $username = Request::get('uname');
-//     $password = Request::get('psw');
-//     $res = User::where('username', $username)->where('password', $password)->get('user_id');
-//     if(isset($res)){
-//         session(['user'=>$res]);
-//         return
-//     }
-// });
-
 //Setting the route to GET to the register page
 Route::get('/register', function () {
     return view('register');
@@ -84,7 +72,7 @@ Route::get('/register', function () {
 Route::post('/register', function () {
     return view('register');
 });
-
+// Deleting the user session and redirecting to home
 Route::get('/logout', function () {
     session()->forget('user');
     return redirect('/');

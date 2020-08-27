@@ -21,16 +21,24 @@ class Controller extends BaseController
     //
     function login(Request $request)
     {
+
+        // Getting the form data from the login
         $user = Req::get('uname');
         $pass = Req::get('psw');
 
+        // Querying the Database to find a user that matches the form data
         $res = User::where([['username', '=', $user],['password', '=', $pass]])->get('user_id')->first();
+
+        // Checking for if the response has a user_id
         if(isset($res->user_id)){
+            // Setting a session for the user
             session(['user' => $user]);
+            // Giving an alert to the user that they have logged in
             echo "<script>alert('Logged In')</script>";
             return redirect('/');//view('welcome')->with('data',  $_SESSION['user']);
         }
         else {
+            // Alerting the user that the login was unsuccessful
             echo "<script>alert('Username or Password is Incorrect')</script>";
             return view('login');
         }
