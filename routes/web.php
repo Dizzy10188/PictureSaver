@@ -28,11 +28,20 @@ Route::get('/', function () {
 });
 
 //Setting the route to POST the uploaded image from the upload page
-Route::post('/', function () {
-    return view('welcome');
+// Route::post('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/userImages', function () {
+    return view('userImages');
+});
+
+Route::post('/userImages', function () {
+    return view('userImages');
 });
 
 //Setting the route to GET to the upload page
 Route::get('/upload', function () {
     return view('upload');
 });
+

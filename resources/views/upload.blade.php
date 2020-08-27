@@ -24,19 +24,17 @@ if (isset($_POST["insert"])) {
 }
 ?>
 
-<!-- header #1 -->
 <header class="header" id="header1">
     <div class="jumbotron text-center bg-secondary">
-        <h1><a style="font-size: 60px;" class="text-light" href="/">Home</a></h1>
+        <h1><a style="font-size: 60px;" class="text-light" href="/">Insert an Image</a></h1>
     </div>
 </header>
 
 <body>
     <br /><br />
     <div class="container" style="width: 500px;">
-        <h3>Insert an Image</h3>
         <br />
-        <form action="/" method="post" enctype="multipart/form-data">
+        <form action="/userImages" method="post" enctype="multipart/form-data">
             @csrf
             <input class="form-control" type="file" name="image" id="image" />
             <br />
@@ -57,7 +55,7 @@ if (isset($_POST["insert"])) {
             } else {
                 var extension = $('#image').val().split('.').pop().toLowerCase();
                 if (extension != 'gif' && extension != 'png' && extension != 'jpg' && extension != 'jpeg') {
-                    alert("Invalid i");
+                    alert("Invalid imagen");
                     $('#image').val('');
                     return false;
                 }
