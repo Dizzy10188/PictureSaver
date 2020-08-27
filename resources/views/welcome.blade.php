@@ -16,11 +16,11 @@ include_once "../database/DBConnector.php";
 $ConnDB = ConnGet();
 if (isset($_POST["insert"])) {
     $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-    $query = "INSERT INTO images(name) VALUES ('$file')";
-
+    $data = session('user');
+    $query = "INSERT INTO images(user_id, name) VALUES ('$data', '$file')";
+    
     if (mysqli_query($ConnDB, $query)) {
         echo '<script>alert("Image Inserted into Database")</script>';
-        $data = session('user');
     }
 }
 
@@ -54,10 +54,6 @@ if (isset($_POST["insert"])) {
             <div class="col-sm-4">
                 <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="login">Login</a></h3>
                 <p style="font-size: 20px;">Click the link above to go to the login page</p>
-            </div>
-            <div class="col-sm-4">
-                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="upload">Upload</a></h3>
-                <p style="font-size: 20px;">Click the link above to go to another page to upload a image of your choosing</p>
             </div>
         </div>
     </div>

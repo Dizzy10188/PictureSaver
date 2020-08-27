@@ -32,7 +32,7 @@ class Controller extends BaseController
         // Checking for if the response has a user_id
         if(isset($res->user_id)){
             // Setting a session for the user
-            session(['user' => $user]);
+            session(['user' => $res->user_id]);
             // Giving an alert to the user that they have logged in
             echo "<script>alert('Logged In')</script>";
             return redirect('/');//view('welcome')->with('data',  $_SESSION['user']);
