@@ -14,13 +14,13 @@
 <?php
 include_once "../database/DBConnector.php";
 $ConnDB = ConnGet();
-if (isset($_POST["uname"]) && isset($_POST["psw"]) && isset($_POST["email"])) {
-    $query = "INSERT INTO users(username, password, email) VALUES ('$_POST[uname]', '$_POST[psw]', '$_POST[email]')";
+if (isset($_POST["uname"]) && isset($_POST["psw"])) {
+    $query = "INSERT INTO users(username, password) VALUES ('$_POST[uname]', '$_POST[psw]')";
 
     if (mysqli_query($ConnDB, $query)) {
         echo '<script>alert("Account created")</script>';
     } else {
-        echo '<script>alert("Username/Email have been taken")</script>';
+        echo '<script>alert("Username has been taken")</script>';
     }
 }
 
@@ -45,10 +45,6 @@ if (isset($_POST["uname"]) && isset($_POST["psw"]) && isset($_POST["email"])) {
             <div class="form-group">
                 <label for="psw">Password:</label>
                 <input type="password" class="form-control" id="psw" name="psw" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <button type="submit" id="register" name="register" class="btn btn-primary">Submit</button>
         </form>
