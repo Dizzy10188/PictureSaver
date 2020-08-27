@@ -4,6 +4,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
+use App\User;
 
 // Checking if Session exists:
     // if (Request::session()->has('user_id')) {
@@ -36,7 +37,15 @@ Route::post('/login', "Controller@login");
 // -----------------------------------
 // Default route: Look for view-page welcome.blade.php in path "/resources/views"
 Route::get('/', function () {
-    return view('welcome');
+    if(session()->has('user')){
+        $session = session('user');
+        // echo $session;
+    }
+    else {
+        $session = null;
+        // echo $session;
+    }
+    return view('welcome')->with('data', $session);
 });
 
 //Setting the route to POST the uploaded image from the upload page
@@ -54,6 +63,18 @@ Route::get('/login', function () {
     return view('login');
 });
 
+// Route::post('/login', 'Controller@login');
+
+// Route::post('/login', function () {
+//     $username = Request::get('uname');
+//     $password = Request::get('psw');
+//     $res = User::where('username', $username)->where('password', $password)->get('user_id');
+//     if(isset($res)){
+//         session(['user'=>$res]);
+//         return
+//     }
+// });
+
 //Setting the route to GET to the register page
 Route::get('/register', function () {
     return view('register');
@@ -62,4 +83,9 @@ Route::get('/register', function () {
 //Setting the route to POST to the register page
 Route::post('/register', function () {
     return view('register');
+});
+
+Route::get('/logout', function () {
+    session()->forget('user');
+    return redirect('/');
 });

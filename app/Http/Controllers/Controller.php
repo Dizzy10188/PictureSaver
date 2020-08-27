@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Request as Req;
+use App\User;
+
 use Illuminate\Http\Request;
 
 
@@ -18,7 +21,19 @@ class Controller extends BaseController
     //
     function login(Request $request)
     {
+        $user = Req::get('uname');
+        $pass = Req::get('psw');
 
+        $res = User::where([['username', '=', $user],['password', '=', $pass]])->get('user_id')->first();
+        if(isset($res->user_id)){
+            session(['user' => $user]);
+            echo "<script>alert('Logged In')</script>";
+            return redirect('/');//view('welcome')->with('data',  $_SESSION['user']);
+        }
+        else {
+            echo "<script>alert('Username or Password is Incorrect')</script>";
+            return view('login');
+        }
         // $output = $request->session()->get('Data');
 
         // $name = $output['uname'];

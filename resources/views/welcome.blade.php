@@ -20,6 +20,7 @@ if (isset($_POST["insert"])) {
 
     if (mysqli_query($ConnDB, $query)) {
         echo '<script>alert("Image Inserted into Database")</script>';
+        $data = session('user');
     }
 }
 
@@ -30,6 +31,20 @@ if (isset($_POST["insert"])) {
         <h1 style="font-size: 60px;">Picture Saver</h1>
         <p style="font-size: 20px;">By Wesley Monk</p>
     </div>
+    @if(isset($data))
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="logout">Logout</a></h3>
+                <p style="font-size: 20px;">Click the link above to go to the login page</p>
+            </div>
+            <div class="col-sm-4">
+                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="upload">Upload</a></h3>
+                <p style="font-size: 20px;">Click the link above to go to another page to upload a image of your choosing</p>
+            </div>
+        </div>
+    </div>
+    @else
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
@@ -46,6 +61,7 @@ if (isset($_POST["insert"])) {
             </div>
         </div>
     </div>
+    @endif
 </header>
 
 <body>
