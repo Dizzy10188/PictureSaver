@@ -3,6 +3,16 @@
 // Path: \MyLaravel\routes
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
+
+// Checking if Session exists:
+    // if (Request::session()->has('user_id')) {
+    //     echo "We Have users.\r\n";
+    //     echo session('user_id');
+    // }
+    
+// Setting a session:
+    // session(['users' => '1']);
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +32,6 @@ Route::get('control/{value}', 'myController@page');
 
 //Setting the controller for login to the route
 Route::post('/login', "Controller@login");
-
-//Setting the controller for register to the route
-Route::post('/register', "Controller@register");
 
 // -----------------------------------
 // Default route: Look for view-page welcome.blade.php in path "/resources/views"
