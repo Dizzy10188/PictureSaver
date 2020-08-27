@@ -23,7 +23,7 @@ if (isset($_POST["insert"])) {
     }
 }
 ?>
-
+<!-- header #1 -->
 <header class="header" id="header1">
     <div class="jumbotron text-center bg-secondary">
         <h1><a style="font-size: 60px;" class="text-light" href="/">Insert an Image</a></h1>

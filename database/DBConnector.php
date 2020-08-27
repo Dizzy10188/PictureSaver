@@ -4,7 +4,7 @@
 DEFINE ('DB_USER', 'root');
 DEFINE ('DB_PSWD', '');
 DEFINE ('DB_SERVER', 'localhost');
-DEFINE ('DB_NAME', 'pictureDB');
+DEFINE ('DB_NAME', 'picturedb');
 
 //Creating and returning a connection to mySQL
 function ConnGet() {
@@ -15,4 +15,9 @@ function ConnGet() {
 
     return $ConnDB;
 }
+
+function checkAccounts($uname, $pswd) {
+
+}
+
 ?>
