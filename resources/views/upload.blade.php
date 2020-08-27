@@ -14,7 +14,7 @@
 <?php
 include_once "../database/DBConnector.php";
 $ConnDB = ConnGet();
-if (isset($_POST["insert"])) {
+if (isset($_POST["/"])) {
     $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
     $query = "INSERT INTO images(name) VALUES ('$file')";
 
