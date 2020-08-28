@@ -22,15 +22,15 @@ $data = session('user');
         <h1 style="font-size: 60px;">Picture Saver</h1>
         <p style="font-size: 20px;">By Wesley Monk</p>
     </div>
+    <div class="search">
+        <form action="/search" method="POST">
+            @csrf
+            <input type="text" name="username" id="username-search-input" required placeholder="Search for User">
+            <button class="btn btn-secondary my-2 my-sm-0" id="search-submit" type="submit">Search</button>
+        </form>
+    </div>
     @if(isset($data))
     <div class="container">
-        <div class="search">
-            <form action="/search" method="POST">
-                @csrf
-                <input type="text" name="username" required placeholder="Search for User">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
         <div class="row">
             <div class="col-sm-4">
                 <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="logout">Logout</a></h3>
@@ -86,5 +86,24 @@ $data = session('user');
         </table>
     </div>
 </body>
-
+<style>
+    .search{
+        width: min-content;
+        margin: 25px auto;
+        text-align: center;
+    }
+    .search>form {
+        display: flex;
+        flex-direction: row;
+    }
+    #username-search-input {
+        text-align: baseline;
+        padding: 0px 10px;
+        height: 40px;
+    }
+    #search-submit{
+        height: 40px;
+        margin: 0px 5px;
+    }
+</style>
 </html>
