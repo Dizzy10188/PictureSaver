@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css"  href="{{ asset('css/style.css') }}">
     <title>Picture Saver</title>
 </head>
 
@@ -27,13 +28,14 @@ if (isset($_POST["uname"]) && isset($_POST["psw"])) {
 ?>
 
 <!-- header #1 -->
-<header class="header" id="header1">
-    <div class="jumbotron text-center bg-secondary">
-        <h1><a style="font-size: 60px;" class="text-light" href="/">Home</a></h1>
+<header class="header">
+    <div class="container">
+        <h1 class="btn"><a class="directory" href="/">Home</a></h1>
     </div>
 </header>
 
 <body>
+    <br><br><br><br>
     <div class="container">
         <h2>Register</h2>
         <form action="/register" method="post">

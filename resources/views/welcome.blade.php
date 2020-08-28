@@ -8,6 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css"  href="{{ asset('css/style.css') }}">
+
     <title>Picture Saver</title>
 </head>
 
@@ -26,34 +28,31 @@ if (isset($_POST["insert"])) {
 
 ?>
 
-<header class="header" id="header1">
-    <div class="jumbotron text-center bg-secondary">
-        <h1 style="font-size: 60px;">Picture Saver</h1>
+<header class="header">
+    <!-- <div class="header">
+        <h1 >Picture Saver</h1>
         <p style="font-size: 20px;">By Wesley Monk</p>
-    </div>
+    </div> -->
+    
     @if(isset($data))
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
-                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="logout">Logout</a></h3>
-                <p style="font-size: 20px;">Click the link above to go to the login page</p>
-            </div>
-            <div class="col-sm-4">
-                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="upload">Upload</a></h3>
-                <p style="font-size: 20px;">Click the link above to go to another page to upload a image of your choosing</p>
+            <div>
+                <h3 class="btn"><a class="directory" href="logout">Logout</a></h3>
+                <!-- <p style="font-size: 20px;">Click the link above to go to the login page</p> -->
+                <h3 class="btn"><a class="directory" href="upload">Upload</a></h3>
+                <!-- <p style="font-size: 20px;">Click the link above to go to another page to upload a image of your choosing</p> -->
             </div>
         </div>
     </div>
     @else
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
-                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="register">Register</a></h3>
-                <p style="font-size: 20px;">Click the link above to go to to the register page</p>
-            </div>
-            <div class="col-sm-4">
-                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="login">Login</a></h3>
-                <p style="font-size: 20px;">Click the link above to go to the login page</p>
+            <div>
+                <h3 class="btn"><a class="directory" href="register">Register</a></h3>
+                <!-- <p style="font-size: 20px;">Click the link above to go to to the register page</p> -->
+                <h3 class="btn"><a class="directory" href="login">Login</a></h3>
+                <!-- <p style="font-size: 20px;">Click the link above to go to the login page</p> -->
             </div>
         </div>
     </div>
@@ -61,14 +60,14 @@ if (isset($_POST["insert"])) {
 </header>
 
 <body>
-    <h2>UserID: {{$data ?? ''}}</h2>
+    <h2 id="userID">UserID: {{$data ?? ''}}</h2>
     <br /><br />
-    <div class="container" style="width: 80%;">
+    <div style="width: 80%;">
         <br />
         <br />
         <table class="table table-bordered">
             <tr>
-                <th style="font-size: 30px;">Images</th>
+                <th id="thImg">Images</th>
             </tr>
             <?php
             $query2 = "SELECT * FROM images ORDER BY id DESC";

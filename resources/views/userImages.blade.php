@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css"  href="{{ asset('css/style.css') }}">
+
 </head>
 
 <?php
@@ -23,19 +25,18 @@
     }
 ?>
 
-<header class="header" id="header1">
-    <div class="jumbotron text-center bg-secondary">
-        <h1><a style="font-size: 60px;" class="text-light" href="/">"$username" Images</a></h1>
+<header class="header">
+    <div class="row">
+        <div>
+            <h1 class="btn"><a class="directory" href="/">Home</a></h1>
+            <h3 class="btn"><a class="directory" href="upload">Upload</a></h3>
+        </div>
     </div>
-
-    <div class="col-sm-4">
-                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin: 600px; margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="upload">Upload</a></h3>
-            </div>
 </header>
 
 <body>
-<br /><br />
-    <div class="container" style="width: 50%;">
+    <br /><br />
+    <div style="width: 80%;">
         <br />
         <br />
         <table class="table table-bordered">

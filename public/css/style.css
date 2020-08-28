@@ -1,0 +1,30 @@
+body {
+    background-color: rgba(211, 203, 203, 0.384);
+}
+
+.header {
+    background-color: rgb(148, 150, 149);
+    height: 90px;
+}
+
+.btn {
+    font-size: 40px;
+}
+
+.directory {
+    margin: 90px;
+    border-radius: 25px;
+    background-color: rgb(148, 150, 149);
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#userID {
+    font-size: 40px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#thImg {
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+}
