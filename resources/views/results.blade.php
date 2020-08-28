@@ -2,12 +2,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
 <!-- header #1 -->
 <header class="header" id="header1">
-    <div class="jumbotron text-center bg-secondary">
-        <h1><a style="font-size: 60px;" class="text-light" href="/">Home</a></h1>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div>
+                <h3 class="btn"><a class="directory" href="/">Home</a></h3>
+                <h3 class="btn"><a class="directory" href="upload">Upload</a></h3>
+                <h3 class="btn"><a class="directory" href="userImages">Images</a></h3>
+            </div>
+        </div>
 </header>
 <div>
     @if(isset($pictures))
