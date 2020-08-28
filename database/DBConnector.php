@@ -15,4 +15,9 @@ function ConnGet() {
 
     return $ConnDB;
 }
+
+function checkAccounts($uname, $pswd) {
+
+}
+
 ?>

@@ -14,14 +14,7 @@
 <?php
 include_once "../database/DBConnector.php";
 $ConnDB = ConnGet();
-if (isset($_POST["insert"])) {
-    $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-    $query = "INSERT INTO images(name) VALUES ('$file')";
-
-    if (mysqli_query($ConnDB, $query)) {
-        echo '<script>alert("Image Inserted into Database")</script>';
-    }
-}
+$data = session('user');
 ?>
 
 <header class="header" id="header1">
@@ -29,6 +22,7 @@ if (isset($_POST["insert"])) {
         <h1 style="font-size: 60px;">Picture Saver</h1>
         <p style="font-size: 20px;">By Wesley Monk</p>
     </div>
+    @if(isset($data))
     <div class="container">
         <div class="search">
             <form action="/search" method="POST">
@@ -39,19 +33,33 @@ if (isset($_POST["insert"])) {
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <h3 style="font-size: 40px;">Why</h3>
-                <p style="font-size: 20px;">The reason this site exists is because I wanted to figure out how to save images to mySQL and display them to a webpage</p>
-            </div>
-            <div class="col-sm-4">
-                <h3 style="font-size: 40px;">About</h3>
-                <p style="font-size: 20px;">This site saves any images that is uploaded and displays them in a gallary format as seen below</p>
+                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="logout">Logout</a></h3>
+                <p style="font-size: 20px;">Click the link above to go to the login page</p>
             </div>
             <div class="col-sm-4">
                 <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="upload">Upload</a></h3>
-                <p style="font-size: 20px;">Click the button above to go to another page to upload a image of your choosing</p>
+                <p style="font-size: 20px;">Click the link above to go to another page to upload a image of your choosing</p>
+            </div>
+            <div class="col-sm-4">
+                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="userImages">Your Images</a></h3>
+                <p style="font-size: 20px;">Click the link above to go see all the pictures you have uploaded</p>
             </div>
         </div>
     </div>
+    @else
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="register">Register</a></h3>
+                <p style="font-size: 20px;">Click the link above to go to to the register page</p>
+            </div>
+            <div class="col-sm-4">
+                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="login">Login</a></h3>
+                <p style="font-size: 20px;">Click the link above to go to the login page</p>
+            </div>
+        </div>
+    </div>
+    @endif
 </header>
 
 <body>
@@ -65,7 +73,7 @@ if (isset($_POST["insert"])) {
             </tr>
             <?php
             $query2 = "SELECT * FROM images ORDER BY id DESC";
-            $result = mysqli_query($ConnDB, $query2);
+            $result = mysqli_query(ConnGet(), $query2);
             while ($row = mysqli_fetch_array($result)) {
                 echo '
                     <tr>
