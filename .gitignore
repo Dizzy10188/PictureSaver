@@ -2,8 +2,10 @@
 /public/hot
 /public/storage
 /storage/*.key
+/database/DBConnector.php
 .env.backup
 .phpunit.result.cache
+.env
 Homestead.json
 Homestead.yaml
 npm-debug.log
