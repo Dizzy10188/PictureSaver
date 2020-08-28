@@ -18,7 +18,7 @@
         <div class="row">
             <div>
                 <h3 class="btn"><a class="directory" href="logout">Logout</a></h3>
-                <h3 class="btn"><a class="directory" href="upload">Upload</a></h3>
+                <h3 class="btn"><a class="directory" href="/">Home</a></h3>
                 <h3 class="btn"><a class="directory" href="userImages">Images</a></h3>
             </div>
         </div>
