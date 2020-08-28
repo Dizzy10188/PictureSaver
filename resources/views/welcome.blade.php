@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css"  href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
     <title>Picture Saver</title>
 </head>
@@ -29,28 +29,22 @@ $data = session('user');
         <div class="row">
             <div>
                 <h3 class="btn"><a class="directory" href="logout">Logout</a></h3>
-                <!-- <p style="font-size: 20px;">Click the link above to go to the login page</p> -->
                 <h3 class="btn"><a class="directory" href="upload">Upload</a></h3>
-                <!-- <p style="font-size: 20px;">Click the link above to go to another page to upload a image of your choosing</p> -->
-            </div>
-            <div class="col-sm-4">
-                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="userImages">Your Images</a></h3>
-                <p style="font-size: 20px;">Click the link above to go see all the pictures you have uploaded</p>
+                <h3 class="btn"><a class="directory" href="userImages">Images</a></h3>
             </div>
         </div>
-    </div>
-    @else
-    <div class="container">
-        <div class="row">
-            <div>
-                <h3 class="btn"><a class="directory" href="register">Register</a></h3>
-                <!-- <p style="font-size: 20px;">Click the link above to go to to the register page</p> -->
-                <h3 class="btn"><a class="directory" href="login">Login</a></h3>
-                <!-- <p style="font-size: 20px;">Click the link above to go to the login page</p> -->
+        @else
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h3 class="btn"><a class="directory" href="register">Register</a></h3>
+                    <!-- <p style="font-size: 20px;">Click the link above to go to to the register page</p> -->
+                    <h3 class="btn"><a class="directory" href="login">Login</a></h3>
+                    <!-- <p style="font-size: 20px;">Click the link above to go to the login page</p> -->
+                </div>
             </div>
         </div>
-    </div>
-    @endif
+        @endif
 </header>
 
 <body>
@@ -61,48 +55,73 @@ $data = session('user');
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
-    <h2 id="userID">UserID: {{$data ?? ''}}</h2>
     <br /><br />
     <div style="width: 80%;">
-        <br />
-        <br />
-        <table class="table table-bordered">
-            <tr>
-                <th id="thImg">Images</th>
-            </tr>
+        <h1 style="text-align: center;">Images</h1>
+        <div class="results-container">
+            <br />
+            <br />
             <?php
             $query2 = "SELECT * FROM images ORDER BY id DESC";
             $result = mysqli_query(ConnGet(), $query2);
             while ($row = mysqli_fetch_array($result)) {
                 echo '
-                    <tr>
-                        <td>
-                            <img src="data:image/jpeg;base64, ' . base64_encode($row['name']) . '" height=30% />
-                        </td>
-                    </tr>';
+                        <div class="image-container">
+                            <img class="image-results" src="data:image/jpeg;base64, ' . base64_encode($row['name']) . '"/>
+                        </div>';
             }
             ?>
-        </table>
-    </div>
+        </div>
 </body>
 <style>
-    .search{
+    .search {
         width: min-content;
         margin: 25px auto;
         text-align: center;
     }
+
     .search>form {
         display: flex;
         flex-direction: row;
     }
+
     #username-search-input {
         text-align: baseline;
         padding: 0px 20px;
         height: 40px;
     }
-    #search-submit{
+
+    #search-submit {
         height: 40px;
         margin: 0px 5px;
     }
+
+    .image-results {
+        width: 400px;
+        height: auto;
+    }
+
+    .results-title {
+        width: 50%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .results-container {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .image-container {
+        padding: 10px;
+        background-color: #ddd;
+        width: min-content;
+        margin: 10px 0px;
+    }
 </style>
+
 </html>
