@@ -24,7 +24,6 @@ $data = session('user');
         <h1 >Picture Saver</h1>
         <p style="font-size: 20px;">By Wesley Monk</p>
     </div> -->
-    
     @if(isset($data))
     <div class="container">
         <div class="row">
@@ -55,6 +54,13 @@ $data = session('user');
 </header>
 
 <body>
+    <div class="search">
+        <form action="/search" method="POST">
+            @csrf
+            <input type="text" name="username" required placeholder="Search for User">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
     <h2 id="userID">UserID: {{$data ?? ''}}</h2>
     <br /><br />
     <div style="width: 80%;">
@@ -91,7 +97,7 @@ $data = session('user');
     }
     #username-search-input {
         text-align: baseline;
-        padding: 0px 10px;
+        padding: 0px 20px;
         height: 40px;
     }
     #search-submit{
