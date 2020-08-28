@@ -11,18 +11,6 @@
     <title>Picture Saver</title>
 </head>
 
-<?php
-include_once "../database/DBConnector.php";
-$ConnDB = ConnGet();
-if (isset($_POST["insert"])) {
-    $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-    $query = "INSERT INTO images(name) VALUES ('$file')";
-
-    if (mysqli_query($ConnDB, $query)) {
-        echo '<script>alert("Image Inserted into Database")</script>';
-    }
-}
-?>
 <!-- header #1 -->
 <header class="header" id="header1">
     <div class="jumbotron text-center bg-secondary">

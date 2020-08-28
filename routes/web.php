@@ -54,7 +54,15 @@ Route::get('/', function () {
 // });
 
 Route::get('/userImages', function () {
-    return view('userImages');
+    if(session()->has('user')){
+        $session = session('user');
+        // echo $session;
+    }
+    else {
+        $session = null;
+        // echo $session;
+    }
+    return view('userImages')->with('data', $session);
 });
 
 Route::post('/userImages', function () {

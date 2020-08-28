@@ -14,16 +14,7 @@
 <?php
 include_once "../database/DBConnector.php";
 $ConnDB = ConnGet();
-if (isset($_POST["insert"])) {
-    $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));
-    $data = session('user');
-    $query = "INSERT INTO images(user_id, name) VALUES ('$data', '$file')";
-    
-    if (mysqli_query($ConnDB, $query)) {
-        echo '<script>alert("Image Inserted into Database")</script>';
-    }
-}
-
+$data = session('user');
 ?>
 
 <header class="header" id="header1">
@@ -41,6 +32,10 @@ if (isset($_POST["insert"])) {
             <div class="col-sm-4">
                 <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="upload">Upload</a></h3>
                 <p style="font-size: 20px;">Click the link above to go to another page to upload a image of your choosing</p>
+            </div>
+            <div class="col-sm-4">
+                <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="userImages">Your Images</a></h3>
+                <p style="font-size: 20px;">Click the link above to go see all the pictures you have uploaded</p>
             </div>
         </div>
     </div>
@@ -61,7 +56,6 @@ if (isset($_POST["insert"])) {
 </header>
 
 <body>
-    <h2>UserID: {{$data ?? ''}}</h2>
     <br /><br />
     <div class="container" style="width: 80%;">
         <br />
@@ -72,7 +66,7 @@ if (isset($_POST["insert"])) {
             </tr>
             <?php
             $query2 = "SELECT * FROM images ORDER BY id DESC";
-            $result = mysqli_query($ConnDB, $query2);
+            $result = mysqli_query(ConnGet(), $query2);
             while ($row = mysqli_fetch_array($result)) {
                 echo '
                     <tr>
