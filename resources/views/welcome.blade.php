@@ -24,6 +24,13 @@ $data = session('user');
     </div>
     @if(isset($data))
     <div class="container">
+        <div class="search">
+            <form action="/search" method="POST">
+                @csrf
+                <input type="text" name="username" required placeholder="Search for User">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
         <div class="row">
             <div class="col-sm-4">
                 <h3 style="font-size: 40px;"><a class="bg-secondary text-light" style="margin-bottom: 8px; padding: 8px; border-radius: 25px;" href="logout">Logout</a></h3>
