@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css"  href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 
 </head>
 
@@ -45,24 +46,48 @@ while ($row = mysqli_fetch_array($result)) {
     <div style="width: 80%;">
         <br />
         <br />
-        <table class="table table-bordered">
-            <!-- <tr>
-                <th style="font-size: 30px;"></th>
-            </tr> -->
+        <h1 style="text-align: center;">Your Images</h1>
+        <div class="results-container">
             <?php
             $query = "SELECT * FROM images WHERE user_id = '$data' ORDER BY id DESC";
             $result = mysqli_query($ConnDB, $query);
             while ($row = mysqli_fetch_array($result)) {
                 echo '
-                        <tr>
-                            <td>
-                                <img src="data:image/jpeg;base64, ' . base64_encode($row['name']) . '" style="height=30%"/>
-                            </td> <th>
-                        </tr>';
+                        <div class="image-container">
+                            <img class="image-results" src="data:image/jpeg;base64, ' . base64_encode($row['name']) . '"/>
+                        </div>';
             }
             ?>
-        </table>
+        </div>
     </div>
 </body>
+<style>
+    .image-results {
+        width: 400px;
+        height: auto;
+    }
+
+    .results-title {
+        width: 50%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .results-container {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .image-container {
+        padding: 10px;
+        background-color: #ddd;
+        width: min-content;
+        margin: 10px 0px;
+    }
+</style>
 
 </html>

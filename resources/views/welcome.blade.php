@@ -20,10 +20,6 @@ $data = session('user');
 ?>
 
 <header class="header">
-    <!-- <div class="header">
-        <h1 >Picture Saver</h1>
-        <p style="font-size: 20px;">By Wesley Monk</p>
-    </div> -->
     @if(isset($data))
     <div class="container">
         <div class="row">
@@ -45,6 +41,7 @@ $data = session('user');
             </div>
         </div>
         @endif
+    </div>
 </header>
 
 <body>
@@ -72,6 +69,7 @@ $data = session('user');
             }
             ?>
         </div>
+    </div>
 </body>
 <style>
     .search {
