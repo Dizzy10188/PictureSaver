@@ -29,14 +29,14 @@ if (isset($_POST["insert"])) {
         <h1 style="font-size: 60px;">Picture Saver</h1>
         <p style="font-size: 20px;">By Wesley Monk</p>
     </div>
-    <div class="search">
-        <form action="/search" method="POST">
-            @csrf
-            <input type="text" name="username" required placeholder="Search for User">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
     <div class="container">
+        <div class="search">
+            <form action="/search" method="POST">
+                @csrf
+                <input type="text" name="username" required placeholder="Search for User">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
         <div class="row">
             <div class="col-sm-4">
                 <h3 style="font-size: 40px;">Why</h3>

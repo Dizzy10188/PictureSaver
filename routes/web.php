@@ -47,29 +47,23 @@ Route::get('/upload', function () {
 // });
 
 Route::post('/search', function () {
-    if (Request::session()->has('users')) {
-        // echo "We Have users.\r\n";
-        // echo session('users');
-    }
-    session(['users'=> '1' ]);
-
-    // Request::session()
     $username = Request::get('username');
-    // echo $username;
+    
     if($username == ""){
         return redirect('/');
     }
-    $response = DB::table('users')->where('name', $username)->get()->first();
+    $response = User::where('username', $username)->get()->first();
     //echo $response->id;
     if($response){
-        $user_id = $response->id;
-        $name = $response->name;
+        $user_id = $response->user_id;
+        $name = $response->username;
         // echo $user_id;
         // echo $name;
         $pictures = DB::table('images')->where('user_id', $user_id)->get();
         return view('results')->with('pictures', $pictures)->with('name', $name);
     }
     else {
-        echo "<h3>Could Not Find User With That Name.</h3>";
+        $name =  "<h3>Could Not Find User With That Name.</h3>";
+        return view('results')->with('name', $name);
     }
 });
